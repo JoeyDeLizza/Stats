@@ -21,7 +21,10 @@ public class Tester {
 		nums.add(4.0);
 
 		Stats test = new Stats(nums);
-		System.out.println(test.mode());
+		SetOperations set = new SetOperations();
+		System.out.println(test.variance());
+		System.out.println(test.standardDeviation());
+		//System.out.println(set.combinations(10, 0));
 
 		
 		Random rand = new Random();

@@ -10,6 +10,12 @@ public class Stats {
 		nums.sort(null);
 	}
 	
+	Stats(Double... n) {
+		for(Double x : n) {
+			nums.add(x);
+		}
+	}
+	
 	public ArrayList<Double> getNums() {
 		return nums;
 	}
@@ -26,7 +32,23 @@ public class Stats {
 		return sum(this.nums);
 	}
 	
-	public double sum(ArrayList<Double> n) {
+	
+	public double variance() {
+		ArrayList<Double> list = new ArrayList<>(this.nums);
+		for(int i = 0; i < list.size(); i++) {
+			list.set(i, Math.pow(list.get(i) - mean(), 2));
+		}
+		
+		return sum(list) / (list.size() - 1);
+		
+		
+	}
+	
+	public double standardDeviation() {
+		return Math.sqrt(variance());
+	}
+	
+	private double sum(ArrayList<Double> n) {
 		double sum = 0;
 		for(Double num : n) {
 			sum+= num;

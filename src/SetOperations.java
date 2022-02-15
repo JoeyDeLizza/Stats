@@ -22,6 +22,31 @@ public class SetOperations {
 		
 	}
 	
+	public int combinations(int n, int r) {
+		if (n == 0 || r == 0) {
+			return 0;
+		} else  if(r > n || r < 0) {
+			throw new IllegalArgumentException("n >= r >= 0");
+		} else {
+		return ((factorial(n) / (factorial(r) * (factorial(n - r)))));
+		}
+	}
+	
+	private int factorial(int n) {
+		if (n == 1) {
+			return 1;
+		} else return (n* factorial(n-1));
+	}
+	
+	public int permutations(int n, int r) {
+		if (n == 0 || r == 0) {
+			return 0;
+		} else  if(r > n || r < 0) {
+			throw new IllegalArgumentException("n >= r >= 0");
+		} else {
+		return ((factorial(n) / (factorial(r) * (factorial(n - r)))));
+		}	}
+	
 	public ArrayList<Integer> intersect(ArrayList<Integer> x, ArrayList<Integer> y) {
 		ArrayList<Integer> set = new ArrayList<>();
 		x = new ArrayList<>(reduce(x));
