@@ -31,9 +31,9 @@ public class Tester {
 		
 		for(int i = 0; i < 1000; i++) {
 			String line = ""; 
-			//line = line + i + "," + rand.nextInt(1001);
-			//System.out.println(line);
-			//wd.outputSingleLine(line + "\n");
+			line = line + i + "," + rand.nextInt(1001);
+			System.out.println(line);
+			wd.outputSingleLine(line + "\n");
 
 		}
 		// Code Pushed

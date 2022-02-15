@@ -18,7 +18,6 @@ public class BirthdayProgram {
 
 			for (int j = 0; j <= list.size()-1; j++) {
 				if (p1.getBirthday() == list.get(j).getBirthday()) {
-					System.out.println("true");
 					return true;
 				}
 			}
@@ -33,16 +32,12 @@ public class BirthdayProgram {
 	
 	public double runTests(int n, int t) {
 		int matchCount = 0;
-		int count = 0;
 		for(int i = 0; i < t; i++) {
 			if(test(n)) {
 				matchCount++;
 			}
-			count++;
 		}
-		System.out.println(t);
-		System.out.println(count);
-		System.out.println(matchCount);
+		
 
 		return((double) matchCount / t);
 	}

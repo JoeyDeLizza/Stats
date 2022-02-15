@@ -11,6 +11,7 @@ public class Stats {
 	}
 	
 	Stats(Double... n) {
+		this.nums = new ArrayList<>();
 		for(Double x : n) {
 			nums.add(x);
 		}
@@ -93,10 +94,7 @@ public class Stats {
 	}
 	
 	private ArrayList<Double> reduce(ArrayList<Double> s) {
-		System.out.println(s);
 		s.sort(null);
-		System.out.println(s + " sorted" );
-
 
 		ArrayList<Double> set = new ArrayList<>();
 		Double prev = s.get(0);
@@ -106,9 +104,16 @@ public class Stats {
 				set.add(s.get(i));
 			prev = s.get(i);
 		}
-		System.out.println("reduced " + set);
 		return set;
 		
+	}
+	
+	public void runAll() {
+		System.out.println("Mean: " + mean());
+		System.out.println("Median: " + median());
+		System.out.println("Mode: " + mode());
+		System.out.println("Standard Deviation: " + standardDeviation());
+		System.out.println("Variance: " + variance());
 	}
 	
 }

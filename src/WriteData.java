@@ -1,6 +1,7 @@
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Random;
 
 public class WriteData {
 	
@@ -21,12 +22,22 @@ public class WriteData {
 		br = new BufferedWriter(fw);
 		try {
 			br.write(userInput);
-			System.out.println("write");
 		} catch (Exception e) {
 			System.out.println("Write out Error: " + e.toString());
 		}
 		br.flush();
 		
+	}
+	
+	public void outputRandomNums() throws IOException {
+		Random rand = new Random();
+		
+		for(int i = 0; i < 1000; i++) {
+			String line = ""; 
+			line = line + i + "," + rand.nextInt(1001);
+			outputSingleLine(line + "\n");
+
+		}
 	}
 	
 }

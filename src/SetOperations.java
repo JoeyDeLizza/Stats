@@ -1,6 +1,14 @@
 import java.util.ArrayList;
 
 public class SetOperations {
+	ArrayList<Integer> set;
+	
+	SetOperations(Integer... n) {
+		set = new ArrayList<>();
+		for(Integer num : n) {
+			set.add(num);
+		}
+	}
 
 	public ArrayList<Integer> union(ArrayList<Integer> x, ArrayList<Integer> y) {
 		ArrayList<Integer> xy = new ArrayList<Integer>(x);
@@ -44,15 +52,13 @@ public class SetOperations {
 		} else  if(r > n || r < 0) {
 			throw new IllegalArgumentException("n >= r >= 0");
 		} else {
-		return ((factorial(n) / (factorial(r) * (factorial(n - r)))));
+		return ((factorial(n) / (factorial(n - r))));
 		}	}
 	
 	public ArrayList<Integer> intersect(ArrayList<Integer> x, ArrayList<Integer> y) {
 		ArrayList<Integer> set = new ArrayList<>();
 		x = new ArrayList<>(reduce(x));
 		y = new ArrayList<>(reduce(y));
-		System.out.println(x);
-		System.out.println(y);
 
 		for(int i = 0; i < x.size(); i++) {
 			for(int j = 0; j < y.size(); j++) {
@@ -76,11 +82,27 @@ public class SetOperations {
 		return set;
 	}
 	
-	private ArrayList<Integer> reduce(ArrayList<Integer> s) {
-		System.out.println(s);
-		s.sort(null);
-		System.out.println(s + " sorted" );
+	public void testCombAndPerm(int n, int r) {
+		System.out.println("Combinations: " + combinations(n, r));
+		System.out.println("Permutations: " + permutations(n, r));
 
+	}
+	
+	public void testSetOps(Integer... n) {
+		ArrayList<Integer> set2 = new ArrayList<>();
+		for (Integer num : n) {
+			set2.add(num);
+		}
+		
+		System.out.println("Union: " + union(this.set, set2));
+		System.out.println("Compliment: " + compliment(this.set, set2));
+		System.out.println("Intersect: " + intersect(this.set, set2));
+
+
+	}
+	
+	private ArrayList<Integer> reduce(ArrayList<Integer> s) {
+		s.sort(null);
 
 		ArrayList<Integer> set = new ArrayList<>();
 		int prev = s.get(0);
@@ -90,7 +112,6 @@ public class SetOperations {
 				set.add(s.get(i));
 			prev = s.get(i);
 		}
-		System.out.println("reduced " + set);
 		return set;
 		
 	}
