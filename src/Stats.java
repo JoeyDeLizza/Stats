@@ -5,16 +5,25 @@ public class Stats {
 
 	private ArrayList<Double> nums;
 	
+	/**
+	 * Copies passed ArrayList into nums
+	 * @param nums list of Double numbers
+	 */
 	Stats(ArrayList<Double> nums) {
 		this.nums = new ArrayList<>(nums);
 		nums.sort(null);
 	}
 	
+	/**
+	 * Copies variable amount of Double numbers into nums
+	 * @param n list of Double numbers
+	 */
 	Stats(Double... n) {
 		this.nums = new ArrayList<>();
 		for(Double x : n) {
 			nums.add(x);
 		}
+		nums.sort(null);
 	}
 	
 	public ArrayList<Double> getNums() {
@@ -25,15 +34,26 @@ public class Stats {
 		this.nums = nums;
 	}
 	
+	/**
+	 * 
+	 * @return return the mean of the numbers in num ArrayList
+	 */
 	public double mean() {
 		return sum() / nums.size();
 	}
 	
+	/**
+	 * 
+	 * @return returns the sum of the numbers in num ArrayList
+	 */
 	public double sum() {
 		return sum(this.nums);
 	}
 	
-	
+	/**
+	 * Calculates the variance of the num ArrayList
+	 * @return returns variance
+	 */
 	public double variance() {
 		ArrayList<Double> list = new ArrayList<>(this.nums);
 		for(int i = 0; i < list.size(); i++) {
@@ -44,11 +64,19 @@ public class Stats {
 		
 		
 	}
-	
+	/**
+	 * Calculates the standard deviation of the nums ArrayList
+	 * @return returns the standard deviation
+	 */
 	public double standardDeviation() {
 		return Math.sqrt(variance());
 	}
 	
+	/**
+	 * Calculates the sum of all numbers in an ArrayList
+	 * @param n ArrayList with Double numbers
+	 * @return Returns the total sum
+	 */
 	private double sum(ArrayList<Double> n) {
 		double sum = 0;
 		for(Double num : n) {
@@ -56,15 +84,27 @@ public class Stats {
 		}
 		return sum;
 	}
-	
+	/**
+	 * Finds the median number in the nums ArrayList
+	 * @return Returns the median
+	 */
 	public double median() {
 		return median(this.nums);
 	}
 	
+	/**
+	 * Finds the mode of the nums ArrayList
+	 * @return Returns a list of mode(s)
+	 */
 	public ArrayList<Double> mode() {
 		return mode(this.nums);
 	}
 	
+	/**
+	 * Finds the mode of a given ArrayList of Double numbers
+	 * @param n List of numbers
+	 * @return Returns a list of mode(s)
+	 */
 	public ArrayList<Double> mode(ArrayList<Double> n) {
 		int most = 0;
 		ArrayList<Double> mode = new ArrayList<>();
@@ -81,7 +121,11 @@ public class Stats {
 		return reduce(mode);
 			
 	}
-	
+	/**
+	 * Finds the median of a given ArrayList of Double numbers
+	 * @param n List of numbers
+	 * @return Returns the median
+	 */
 	private double median(ArrayList<Double> n) {
 		ArrayList<Double> list = new ArrayList<>(n);
 		if (list.size() == 2)
@@ -93,6 +137,11 @@ public class Stats {
 		return median(list);
 	}
 	
+	/**
+	 * Gets rid of any duplicate numbers in an ArrayList
+	 * @param s List of numbers
+	 * @return Returns a list of number without duplicates
+	 */
 	private ArrayList<Double> reduce(ArrayList<Double> s) {
 		s.sort(null);
 
@@ -107,7 +156,9 @@ public class Stats {
 		return set;
 		
 	}
-	
+	/**
+	 * Computes and displays stats
+	 */
 	public void runAll() {
 		System.out.println("Mean: " + mean());
 		System.out.println("Median: " + median());

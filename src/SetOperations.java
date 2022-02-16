@@ -3,13 +3,23 @@ import java.util.ArrayList;
 public class SetOperations {
 	ArrayList<Integer> set;
 	
+	/**
+	 * Constructs a set with the variable number of Integers
+	 * @param n
+	 */
 	SetOperations(Integer... n) {
 		set = new ArrayList<>();
 		for(Integer num : n) {
 			set.add(num);
 		}
+		reduce(set);
 	}
-
+	/**
+	 * Computes the union of two sets of numbers
+	 * @param x first set of numbers
+	 * @param y second set of numbers
+	 * @return The unioned set
+	 */
 	public ArrayList<Integer> union(ArrayList<Integer> x, ArrayList<Integer> y) {
 		ArrayList<Integer> xy = new ArrayList<Integer>(x);
 		xy.addAll(y);
@@ -29,7 +39,12 @@ public class SetOperations {
 		return set;
 		
 	}
-	
+	/**
+	 * Computes the number of combinations given n and r
+	 * @param n
+	 * @param r
+	 * @return returns the number of combinations
+	 */
 	public int combinations(int n, int r) {
 		if (n == 0 || r == 0) {
 			return 0;
@@ -39,13 +54,22 @@ public class SetOperations {
 		return ((factorial(n) / (factorial(r) * (factorial(n - r)))));
 		}
 	}
-	
+	/**
+	 * Computes the factorial 
+	 * @param n
+	 * @return returns factorial of n
+	 */
 	private int factorial(int n) {
 		if (n == 1) {
 			return 1;
 		} else return (n* factorial(n-1));
 	}
-	
+	/**
+	 * Computes the number of permutations given n and r
+	 * @param n
+	 * @param r
+	 * @return returns the number of computations
+	 */
 	public int permutations(int n, int r) {
 		if (n == 0 || r == 0) {
 			return 0;
@@ -55,6 +79,12 @@ public class SetOperations {
 		return ((factorial(n) / (factorial(n - r))));
 		}	}
 	
+	/**
+	 * Computes the intersection of two sets of Integers
+	 * @param x
+	 * @param y
+	 * @return Returns the intersection
+	 */
 	public ArrayList<Integer> intersect(ArrayList<Integer> x, ArrayList<Integer> y) {
 		ArrayList<Integer> set = new ArrayList<>();
 		x = new ArrayList<>(reduce(x));
@@ -72,7 +102,12 @@ public class SetOperations {
 		return set;
 	
 	}
-	
+	/**
+	 * Computes the compliment of two given sets of Integers
+	 * @param a
+	 * @param x
+	 * @return Returns the compliment
+	 */
 	public ArrayList<Integer> compliment(ArrayList<Integer> a, ArrayList<Integer> x) {
 		ArrayList<Integer> set = new ArrayList<>(a);
 		
@@ -81,13 +116,20 @@ public class SetOperations {
 		}
 		return set;
 	}
-	
+	/**
+	 * Prints Number of combinations of permutations given n and r
+	 * @param n
+	 * @param r
+	 */
 	public void testCombAndPerm(int n, int r) {
 		System.out.println("Combinations: " + combinations(n, r));
 		System.out.println("Permutations: " + permutations(n, r));
 
 	}
-	
+	/**
+	 * Prints the various set operations between this objects set and a list of Integers passed
+	 * @param n Variable amount of Integers
+	 */
 	public void testSetOps(Integer... n) {
 		ArrayList<Integer> set2 = new ArrayList<>();
 		for (Integer num : n) {
@@ -100,7 +142,11 @@ public class SetOperations {
 
 
 	}
-	
+	/**
+	 * Gets rid of duplicate Integers in a list
+	 * @param s list of Integers
+	 * @return returns list without any duplicate numbers
+	 */
 	private ArrayList<Integer> reduce(ArrayList<Integer> s) {
 		s.sort(null);
 

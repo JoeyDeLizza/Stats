@@ -12,12 +12,16 @@ public class WriteData {
 		
 		
 		try {
-			fw = new FileWriter("ExampleOutput.csv");
+			fw = new FileWriter("RandomNumsOutput.csv");
 		} catch(Exception e) {
 			System.out.println("Error occured: " + e.toString());
 		}
 	}
-	
+	/**
+	 * Writes a string to file
+	 * @param userInput
+	 * @throws IOException
+	 */
 	public void outputSingleLine(String userInput) throws IOException {
 		br = new BufferedWriter(fw);
 		try {
@@ -28,7 +32,10 @@ public class WriteData {
 		br.flush();
 		
 	}
-	
+	/**
+	 * Writes a list of random Integers [0-1000] to a file
+	 * @throws IOException
+	 */
 	public void outputRandomNums() throws IOException {
 		Random rand = new Random();
 		
