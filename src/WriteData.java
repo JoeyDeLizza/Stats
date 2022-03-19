@@ -12,7 +12,17 @@ public class WriteData {
 		
 		
 		try {
-			fw = new FileWriter("RandomNumsOutput.csv");
+			fw = new FileWriter("ExampleOutput.csv");
+		} catch(Exception e) {
+			System.out.println("Error occured: " + e.toString());
+		}
+	}
+	
+	public WriteData(String File) {
+		
+		
+		try {
+			fw = new FileWriter(File);
 		} catch(Exception e) {
 			System.out.println("Error occured: " + e.toString());
 		}
