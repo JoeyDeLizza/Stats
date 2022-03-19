@@ -103,7 +103,7 @@ public class Plotter {
         		file += line +',';
         		line = br.readLine();
         }
-        System.out.println(file);
+       // System.out.println(file);
         String[] points = file.split(",");
         ArrayList<String> yPoints = new ArrayList<>();
         ArrayList<String> xPoints = new ArrayList<>();
@@ -119,11 +119,11 @@ public class Plotter {
         int count = 0;
         ArrayList<Double> nNums = new ArrayList<>();
         for(int i = 0; i < t*2; i+=2) {
-        	System.out.println(points[i]);
+        	//System.out.println(points[i]);
         	nNums.add(Double.parseDouble(points[i]));
   
         }
-        System.out.println(nNums.toString());
+      //  System.out.println(nNums.toString());
         smooth.outputSingleLine("" + (t-1) + "," + sum(nNums)/t + "\n");
         
        int pointer = 0;
