@@ -8,6 +8,8 @@ public class SetOperations {
 	 * @param n
 	 */
 	SetOperations(Integer... n) {
+		if(n.length==0)
+			return;
 		set = new ArrayList<>();
 		for(Integer num : n) {
 			set.add(num);
@@ -41,14 +43,18 @@ public class SetOperations {
 	}
 	/**
 	 * Computes the number of combinations given n and r
+	 * Should change to BigInteger
 	 * @param n
 	 * @param r
 	 * @return returns the number of combinations
 	 */
-	public int combinations(int n, int r) {
+	public double combinations(int n, int r) {
 		if (n == 0 || r == 0) {
 			return 0;
-		} else  if(r > n || r < 0) {
+		} else if(n == 1) {
+			return 1;
+		}else  if(r > n || r < 0) {
+		
 			throw new IllegalArgumentException("n >= r >= 0");
 		} else {
 		return ((factorial(n) / (factorial(r) * (factorial(n - r)))));
@@ -56,11 +62,12 @@ public class SetOperations {
 	}
 	/**
 	 * Computes the factorial 
+	 * should change to BigInteger
 	 * @param n
 	 * @return returns factorial of n
 	 */
-	private int factorial(int n) {
-		if (n == 1) {
+	public long factorial(int n) {
+		if (n == 1 || n == 0) {
 			return 1;
 		} else return (n* factorial(n-1));
 	}
@@ -70,10 +77,12 @@ public class SetOperations {
 	 * @param r
 	 * @return returns the number of computations
 	 */
-	public int permutations(int n, int r) {
+	public double permutations(int n, int r) {
 		if (n == 0 || r == 0) {
 			return 0;
-		} else  if(r > n || r < 0) {
+		} else if(n == r) {
+			return factorial(n);
+		}else  if(r > n || r < 0) {
 			throw new IllegalArgumentException("n >= r >= 0");
 		} else {
 		return ((factorial(n) / (factorial(n - r))));

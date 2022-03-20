@@ -32,6 +32,7 @@ public class Plotter {
 	
 	/**
 	 * Randomly adds or subtracts a number between 0 and the bound for each y-coordinate
+	 * Kind of ugly and could be cleaner
 	 * @param bound the upper bound non-inclusive
 	 * @throws IOException
 	 */
@@ -51,21 +52,28 @@ public class Plotter {
             System.out.println("File not found");
         }
         br = new BufferedReader(fr);
-        
+        // read first line in Points
         line = br.readLine();
+        // Loop to read entire file
         while (line != null) {
+        	// split the line to store points in array
         		String[] str = line.split(",");
+        		// Line to be printed in Salted file = x point
         		String newLine = str[0];
+        		// get y cord
         		double yNum = Double.parseDouble(str[1]);
+        		// number to be added to y
         		int saltedNum = rand.nextInt(bound);
+        		// randomized boolean to determine to add or subtract
         		boolean subtract = rand.nextBoolean();
         		if(subtract) {
         			yNum -= saltedNum;
         		} else {
         			yNum += saltedNum;
         		}
+        		// append comma and salted yNum
         		newLine += "," + yNum;
-        		System.out.println(newLine);
+        		//System.out.println(newLine);
         		salt.outputSingleLine(newLine + "\n");
         		line = br.readLine();
         }
@@ -75,13 +83,12 @@ public class Plotter {
 	
 	/**
 	 * Just takes the moving average with a time of t
-	 * @param t number points 
+	 * Just as ugly as the salt function but worse
+	 * @param t number points to use for average
 	 * @throws IOException
 	 */
 	public void smooth(int t) throws IOException {
-		Random rand = new Random();
         String line;
-        System.out.println("hi");
         WriteData smooth = new WriteData("SmoothedPoints.csv");
 
  
@@ -104,19 +111,19 @@ public class Plotter {
         		line = br.readLine();
         }
        // System.out.println(file);
+        // Splits points
         String[] points = file.split(",");
         ArrayList<String> yPoints = new ArrayList<>();
         ArrayList<String> xPoints = new ArrayList<>();
-        for(int i = 0; i < 100; i++) {
+        // create list of x points
+        for(int i = 0; i < points.length/2; i++) {
         	xPoints.add(""+i);
         }
+        // create list of y points
         for(int i = 1; i < points.length; i+=2) {
         	yPoints.add(points[i]);
         }
-        boolean start = false;
-        double avg = 0;
-        double sum = 0;
-        int count = 0;
+     
         ArrayList<Double> nNums = new ArrayList<>();
         for(int i = 0; i < t*2; i+=2) {
         	//System.out.println(points[i]);
@@ -129,7 +136,7 @@ public class Plotter {
        int pointer = 0;
         for(int i = t; i < xPoints.size(); i++) {
         	nNums.set(pointer, Double.parseDouble(yPoints.get(i)));
-        	pointer = (++pointer) % 10;
+        	pointer = (++pointer) % t;
         	System.out.println(nNums.toString());
 
         	String output = "" + (i) + "," + sum(nNums)/t +"\n";

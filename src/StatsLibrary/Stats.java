@@ -121,6 +121,73 @@ public class Stats {
 		return reduce(mode);
 			
 	}
+	
+	/**
+	 * Calculates the binomial distribution of a random variable y
+	 * @param n population size
+	 * @param y random variable
+	 * @param p probability of event
+	 * @param q 1-p
+	 * @return returns the binomial distribution
+	 */
+	public double biDist(int n, int y, double p, double q) {
+		SetOperations comb = new SetOperations();
+		return comb.combinations(n, y) * Math.pow(p, y) * Math.pow(q, (n-y));
+	}
+	
+	public void testBiDist(int n, int y, double p, double q ) {
+		System.out.println("Binomial Distribution:");
+		System.out.println("P(Y=" + y+ "): " +biDist(n, y, p, q));
+	}
+	
+	/**
+	 * Calculates the geometric distribution of a random variable Y
+	 * @param y random variable 
+	 * @param p
+	 * @param q
+	 * @return returns the geometric distribution
+	 */
+	public double geoDist(int y, double p, double q) {
+		return Math.pow(q, (y-1)) * p;
+	}
+	
+	public void testGeoDist(int y, double p, double q ) {
+		System.out.println("Geometric Distribution:");
+		System.out.println("P(Y=" + y+ "): " +geoDist(y, p, q));
+	}
+	
+	/**
+	 * Calculates the Hyper Geometric distribution
+	 * @param r
+	 * @param y
+	 * @param BN
+	 * @param n
+	 * @return
+	 */
+	public double hyperGeoDist(int r, int y, int N, int n) {
+		SetOperations comb = new SetOperations();
+		return (comb.combinations(r, y) * comb.combinations((N -r), (n-r))) / comb.combinations(N, n);
+	}
+	
+	public void testHyperGeoDist(int r, int y, int N, int n ) {
+		System.out.println("HyperGeometric Distribution:");
+		System.out.println("P(Y=" + y+ "): " +hyperGeoDist(r, y, N, n));
+	}
+	
+	public double poisDist(int y, double l) {
+		SetOperations fact = new SetOperations();
+		return (Math.pow(l, y)/ fact.factorial(y)) * Math.pow(Math.E, l*-1);
+	}
+	
+	public double poisDist(int y, int n, double p) {
+		double l = n*p;
+		return poisDist(y, l);
+	}
+	
+	public void testPoisDist(int y, int l) {
+		System.out.println("Poisson Distribution:");
+		System.out.println("P(Y=" + y + "): " +poisDist(y, l));
+	}
 	/**
 	 * Finds the median of a given ArrayList of Double numbers
 	 * @param n List of numbers
